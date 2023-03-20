@@ -1,13 +1,6 @@
 const http = require('node:http')
 
-const server = http.createServer(function(request, response) {
-
-    console.log("escuchando en el puerto 3002");
-
-    if (request.url == "/") {
-        response.write("Agustin Gonzalez")
-    } else if (request.url == "/productos") {
-        let productos = [
+let productos = [
             {
                 id: 1,
                 nombre: "Café Expreso",
@@ -34,16 +27,34 @@ const server = http.createServer(function(request, response) {
                 precio: 200
             }
         ]
-    } else if (request.url == "/materia") {
-        response.write("Materia: Aplicaciones Hibridas")
-    } else if (request.url == "/profesor") {
-        response.write("Profesor: Brian Lara")
-    } else {
-        response.write("Pagina no encontrada")
+
+const server = http.createServer(function(request, response) {
+
+    console.log("escuchando en el puerto 3002");
+    response.write("<h1>Mi espectacular pagina web!</h1>");
+
+    if (request.url == "/") {
+        response.write("<p>Agustin Gonzalez</p>")
+    } 
+    else if (request.url == "/productos") {
+        response.write("<ul>");
+        productos.forEach((producto) => {
+            response.write(`<li>${producto. id} | ${producto. nombre} | ${producto. precio}</li>`)
+        })
+        response.write("</ul>");
+    } 
+    else if (request.url == "/materia") {
+        response.write("<p>Materia: Aplicaciones Hibridas</p>")
+    } 
+    else if (request.url == "/profesor") {
+        response.write("<p>Profesor: Brian Lara</p>")
+    } 
+    else {
+        response.write("<p>Pagina no encontrada</p>")
     }
     
     response.end()
     
 })
 
-server.listen(3002)
+server.listen(2022)

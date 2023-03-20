@@ -1,4 +1,3 @@
-// Parte #01
 const http = require('node:http')
 
 const server = http.createServer(function(request, response) {
@@ -42,8 +41,6 @@ const server = http.createServer(function(request, response) {
     } else {
         response.write("Pagina no encontrada")
     }
-
-    // Parte #03
     
     response.end()
     
